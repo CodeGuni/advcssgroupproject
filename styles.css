@@ -1,0 +1,239 @@
+/* 
+Author: Gunpreet Singh, Student ID: 9022194
+Course: Web Development, Conestoga College
+Project: Explore Nature Website, Group Project
+File: styles.css - Defines responsive styles using CSS Grid, fluid typography, and animations
+Date: April 14, 2025
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #2e7d32;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 1000;
+}
+
+header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+
+nav {
+    margin-top: 1rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+nav ul.open {
+    display: flex;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #a5d6a7;
+}
+
+nav a.active {
+    border-bottom: 2px solid #a5d6a7;
+}
+
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger-icon {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    position: relative;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+    content: '';
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease;
+}
+
+.hamburger-icon::before {
+    top: -8px;
+}
+
+.hamburger-icon::after {
+    top: 8px;
+}
+
+.hamburger[aria-expanded="true"] .hamburger-icon {
+    background: transparent;
+}
+
+.hamburger[aria-expanded="true"] .hamburger-icon::before {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger[aria-expanded="true"] .hamburger-icon::after {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.hero, .about {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+article {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: scale(1);
+    transition: transform 0.3s ease;
+}
+
+article:hover {
+    transform: scale(1.05);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.responsive-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+    color: #2e7d32;
+}
+
+p {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+footer {
+    background-color: #2e7d32;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1001;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background: #2e7d32;
+        position: fixed;
+        top: 4rem;
+        right: 0;
+        width: 200px;
+        padding: 1rem;
+        z-index: 1000;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .content, .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content, .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-img {
+        height: 250px;
+    }
+}
